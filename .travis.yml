@@ -1,0 +1,19 @@
+language: php
+os:
+  - linux
+services:
+  - docker
+env:
+  - OS_TYPE=centos OS_VERSION=7
+sudo: false
+script:
+  - docker run -v $(pwd):/package-repository centos:7 bash -c "/package-repository/scripts/build-rpm.sh $TRAVIS_BUILD_NUMBER $OS_TYPE $OS_VERSION"
+
+deploy:
+  provider: s3
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_ACCESS_SECRET
+  region: $AWS_REGION
+  bucket: "developmentstudio-yum-repository"
+  skip_cleanup: true
+  local_dir: build

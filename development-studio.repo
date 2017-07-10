@@ -1,0 +1,5 @@
+[development-studio]
+name=name=Development Studio RPM repository
+baseurl=https://s3-eu-west-1.amazonaws.com/developmentstudio-yum-repository/centos/7/no-arch/
+enabled=1
+gpgcheck=0
